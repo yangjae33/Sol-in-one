@@ -1,8 +1,4 @@
 FROM adoptopenjdk/openjdk11
-WORKDIR ./backend
-RUN ["ls", "-al"]
-WORKDIR /backend
-RUN ["ls", "-al"]
 CMD ["./mvnw", "clean", "package"]
 ARG JAR_FILE_PATH=target/*.jar
 COPY ${JAR_FILE_PATH} backend-0.0.1-SNAPSHOT.jar
