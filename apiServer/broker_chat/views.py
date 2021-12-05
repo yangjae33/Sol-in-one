@@ -11,22 +11,38 @@ from django.http import JsonResponse
 from .models import Answer
 
 
-# Create your views here.
+# # to-be 버전
+# def Chatbot(request):
+#     data = json.loads(request.body)
+#     q = '12345678'  # encoding_question(data['content']) -- 질문에 대한 해쉬값을 우선 전달 받음
+#
+#     is_answer = Answer.objects.filter(question_val=q).exists()
+#     '''만약 이미 해당 질문에 대한 답이 있는 경우 그것을 제공'''
+#     if is_answer:
+#         old_a = Answer.objects.filter(question_val=q)
+#         return JsonResponse(serializers.serialize('json', old_a), safe=False)
+#
+#     '''없던 질문이라면 새로이 등록'''
+#     _, a, chatIdx, reliability = q, '머니버스를 이용하세요', 2, 0.7  # get_answer(data)  -- ... 챗봇 서버로 부터 응답을 받음
+#     new_a = Answer.objects.create(question_val=q,
+#                                   chatbot_id=chatIdx,
+#                                   content=a,
+#                                   reliability=reliability)
+#
+#     return JsonResponse(serializers.serialize('json', [new_a]), safe=False)
+
+
+# simple 버전
 def Chatbot(request):
     data = json.loads(request.body)
-    q = '12345678'  # encoding_question(data['content']) -- 질문에 대한 해쉬값을 우선 전달 받음
+    q = data['question'] #  -- 질문에 대한 해쉬값을 우선 전달 받음
 
-    is_answer = Answer.objects.filter(question_val=q).exists()
-    '''만약 이미 해당 질문에 대한 답이 있는 경우 그것을 제공'''
-    if is_answer:
-        old_a = Answer.objects.filter(question_val=q)
-        return JsonResponse(serializers.serialize('json', old_a), safe=False)
+    _, answer, chatbot_id, reliability = q, '머니버스를 이용하세요', 2, 0.7  # get_answer(q)  -- ... 챗봇 서버로 부터 응답을 받음
 
-    '''없던 질문이라면 새로이 등록'''
-    _, a, chatIdx, reliability = q, '머니버스를 이용하세요', 2, 0.7  # get_answer(data)  -- ... 챗봇 서버로 부터 응답을 받음
-    new_a = Answer.objects.create(question_val=q,
-                                  chatbot_id=chatIdx,
-                                  content=a,
-                                  reliability=reliability)
+    ans={
+        'answer':answer,
+        'chatbot_id':chatbot_id,
+        'reliability':reliability
+    }
 
-    return JsonResponse(serializers.serialize('json', [new_a]), safe=False)
+    return JsonResponse(ans, safe=False)
