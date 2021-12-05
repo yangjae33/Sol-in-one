@@ -7,6 +7,7 @@ import json
 
 from django.core import serializers
 from django.http import JsonResponse
+from .utils import *
 
 from .models import Answer
 
@@ -37,6 +38,8 @@ def Chatbot(request):
     data = json.loads(request.body)
     q = data['question'] #  -- 질문에 대한 해쉬값을 우선 전달 받음
 
+    print(q)
+    get_answer(q)
     _, answer, chatbot_id, reliability = q, '머니버스를 이용하세요', 2, 0.7  # get_answer(q)  -- ... 챗봇 서버로 부터 응답을 받음
 
     ans={
