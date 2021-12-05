@@ -40,7 +40,8 @@ jobs:
         with:
           task-definition: task-definition.json
           container-name: fmp-container
-          image: ${{ steps.build-image.outputs.image }}
+          image: 118903531174.dkr.ecr.ap-northeast-2.amazonaws.com/amp:42e07a662d0491a07d2d3b7383884efb0a82329f
+#           image: ${{ steps.build-image.outputs.image }}
 
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
