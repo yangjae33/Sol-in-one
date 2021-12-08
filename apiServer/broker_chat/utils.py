@@ -2,7 +2,7 @@ from socket import *
 import json
 
 BROKER_IP='3.37.67.26'
-BROKER_PORT=9000
+BROKER_PORT=9001
 
 
 def encoding_question(q_str):
@@ -25,12 +25,13 @@ def encoding_question(q_str):
 
 ''' data['question'] = '금리가 가장 저렴함 상품이 뭐야?' '''
 def get_answer(requestMsg):
-    data = "/message?/" + requestMsg.decode('utf-8').replace('\n','') + '\n'
+    data = "/message?/" + requestMsg.replace('\n','') + '\n'
     clientSock = socket(AF_INET, SOCK_STREAM)
     clientSock.connect((BROKER_IP, BROKER_PORT))
     clientSock.sendall(data.encode('utf-8'))
     ret=str(clientSock.recv(1024), 'utf-8')
-    return ret
+
+    return json.loads(ret)
 
 
 
