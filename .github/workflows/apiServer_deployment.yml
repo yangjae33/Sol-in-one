@@ -43,6 +43,10 @@ jobs:
           image: 118903531174.dkr.ecr.ap-northeast-2.amazonaws.com/backend:latest
 #           image: ${{ steps.build-image.outputs.image }}
 
+      - name: Force deployment
+        run: |
+          aws ecs update-service --cluster sol-in-one --service backend-service --force-new-deployment
+
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
@@ -51,6 +55,3 @@ jobs:
           cluster: sol-in-one
           wait-for-service-stability: true
 
-      - name: Force deployment
-        run: |
-          aws ecs update-service --cluster sol-in-one --service backend-service --force-new-deployment
