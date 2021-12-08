@@ -47,6 +47,6 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: hanja-service
-          cluster: hanju
+          service: backend-service
+          cluster: sol-in-one
           wait-for-service-stability: true
