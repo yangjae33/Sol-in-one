@@ -1,7 +1,7 @@
 
 on:
   push:
-    branches: [ backend ]
+    branches: [ api-server ]
 name: Deploy to Amazon ECS
 
 jobs:
