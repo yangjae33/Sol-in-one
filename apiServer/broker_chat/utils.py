@@ -1,10 +1,12 @@
 from socket import *
+import json
 
-ip='3.37.67.26'
-port=9000
+BROKER_IP='3.37.67.26'
+BROKER_PORT=9000
+
 
 def encoding_question(q_str):
-    con=socket.create_connection((ip,port)) # 실제로는 model서버 ip/port값으로 넣기
+    con=socket.create_connection((BROKER_IP,BROKER_PORT)) # 실제로는 model서버 ip/port값으로 넣기
     con.send(q_str.encode())
     ret=con.recv(1024)
     return int(ret)
@@ -21,19 +23,15 @@ def encoding_question(q_str):
 #     return ret.split('|')
 
 
-def get_answer(data):
-    print(data)
+''' data['question'] = '금리가 가장 저렴함 상품이 뭐야?' '''
+def get_answer(requestMsg):
+    data = "/message?/" + requestMsg.decode('utf-8').replace('\n','') + '\n'
     clientSock = socket(AF_INET, SOCK_STREAM)
-    clientSock.connect((ip, port))
-    print(clientSock)
-    clientSock.send(data.encode('utf-8'))
-    print(data.encode('utf-8'),'!!!')
-    ret=clientSock.recv(1024)
-    print(ret)
-    return ret.split('|')
+    clientSock.connect((BROKER_IP, BROKER_PORT))
+    clientSock.sendall(data.encode('utf-8'))
+    ret=str(clientSock.recv(1024), 'utf-8')
+    return ret
 
-
-#print(get_answer("/message/?{\'data\':\'질문\'}"))
 
 
 # ip='localhost'

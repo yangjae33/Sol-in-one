@@ -35,17 +35,16 @@ from .models import Answer
 
 # simple 버전
 def Chatbot(request):
-    data = json.loads(request.body)
-    q = data['question'] #  -- 질문에 대한 해쉬값을 우선 전달 받음
+    get_answer(request.body)
 
-    print(q)
-    get_answer(q)
-    _, answer, chatbot_id, reliability = q, '머니버스를 이용하세요', 2, 0.7  # get_answer(q)  -- ... 챗봇 서버로 부터 응답을 받음
+    answer, chatbot_id, reliability = '머니버스를 이용하세요', 2, 0.7  # get_answer(q)  -- ... 챗봇 서버로 부터 응답을 받음
 
     ans={
         'answer':answer,
         'chatbot_id':chatbot_id,
         'reliability':reliability
     }
+
+
 
     return JsonResponse(ans, safe=False)
