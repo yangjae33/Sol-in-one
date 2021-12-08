@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+  <category>
+    <pattern>안녕</pattern>
+    <template>안녕하세요 쏠메이트 오로라입니다!</template>
+  </category>
+  <category>
+    <pattern>가장높은금리의상품이뭐야</pattern>
+    <template>신한 더모아 적금을 추천할게!</template>
+  </category>
+  <category>
+    <pattern>가장저렴한금리의상품이뭐야</pattern>
+    <template>신한 더모아 적금을 추천할게!</template>
+  </category>
+  <category>
+    <pattern>*</pattern>
+    <template>그건 아직 잘 모르겠어요..</template>
+  </category>
+</aiml>
+ 
