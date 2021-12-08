@@ -8,6 +8,8 @@ import json
 from django.core import serializers
 from django.http import JsonResponse
 from .utils import *
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
 
 from .models import Answer
 
@@ -34,9 +36,10 @@ from .models import Answer
 
 
 # simple 버전
+@method_decorator(csrf_exempt, name='dispatch')
 def Chatbot(request):
-    get_answer(request.body)
-    print(request.body,'!!!! request 내용')
+    print(request.body.decode('utf-8'))
+    get_answer(request.body.decode('utf-8'),'!!!! 질문 내용')
     answer, chatbot_id, reliability = '머니버스를 이용하세요', 2, 0.7  # get_answer(q)  -- ... 챗봇 서버로 부터 응답을 받음
 
     ans={
