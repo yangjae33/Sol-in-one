@@ -1,7 +1,7 @@
 
 on:
   push:
-    branches: [ backend ]
+    branches: [ api-server ]
 name: Deploy to Amazon ECS
 
 jobs:
@@ -29,24 +29,24 @@ jobs:
         id: build-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: amp
-          IMAGE_TAG: ${{ github.sha }}
+          ECR_REPOSITORY: backend
+          IMAGE_TAG: latest
         run: |
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./backend
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./apiServer
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-          task-definition: task-definition.json
-          container-name: fmp-container
-          image: 118903531174.dkr.ecr.ap-northeast-2.amazonaws.com/amp:42e07a662d0491a07d2d3b7383884efb0a82329f
+          task-definition: apiServer-task.json
+          container-name: backend
+          image: 118903531174.dkr.ecr.ap-northeast-2.amazonaws.com/backend:latest
 #           image: ${{ steps.build-image.outputs.image }}
 
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: hanja-service
-          cluster: hanju
+          service: backend-service
+          cluster: sol-in-one
           wait-for-service-stability: true
