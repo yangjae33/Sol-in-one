@@ -36,7 +36,7 @@ from .models import Answer
 
 
 # simple 버전
-CHAT_MAPPING={'22':'MOLI', '33':'ORORA', '44':'NEXT'}
+CHAT_MAPPING={'cBWAkfuKLnRsumcU6Z4j':'MOLI', 'FMBsMyWGx4LpTtX619Pi':'ORORA', 'DVkuJGchRdn8hxiuWbon':'NEXT'}
 def Chatbot(request):
     print(request.body.decode('utf-8'),'!!! 질문 내용')
 
@@ -45,7 +45,7 @@ def Chatbot(request):
 
     ret={
         'answer':'머니버스를 이용하세요',
-        'chatbot_id':'22',
+        'chatbot_id':'cBWAkfuKLnRsumcU6Z4j',
         'reliability':0.7
     }
 
