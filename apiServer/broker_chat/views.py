@@ -36,19 +36,23 @@ from .models import Answer
 
 
 # simple 버전
-CHAT_MAPPING={'cBWAkfuKLnRsumcU6Z4j':'MOLI', 'FMBsMyWGx4LpTtX619Pi':'ORORA', 'DVkuJGchRdn8hxiuWbon':'NEXT'}
+CHAT_MAPPING={'22':['cBWAkfuKLnRsumcU6Z4j', 'MOLY'], '33':['FMBsMyWGx4LpTtX619Pi', 'ORORA'], '44':['DVkuJGchRdn8hxiuWbon','NEXT']}
 def Chatbot(request):
     print(request.body.decode('utf-8'),'!!! 질문 내용')
 
 
-    ret = get_answer(request.body.decode('utf-8'))
+    ans = get_answer(request.body.decode('utf-8'))
 
-    ret={
-        'answer':'머니버스를 이용하세요',
-        'chatbot_id':'cBWAkfuKLnRsumcU6Z4j',
-        'reliability':0.7
-    }
-
-    ret['chatbot_id']=CHAT_MAPPING[ret['chatbot_id']]
-    print(ret)
+    # ans={
+    #     'answer':'머니버스를 이용하세요',
+    #     'chatbot_id':'22',
+    #     'reliability':0.7
+    # }
+    print(ans,'!@#!@#@#')
+    ret=dict({})
+    ret['answer']=ans['answer']
+    ret['chatbot_id']=CHAT_MAPPING[ans['chatbot_id']][0]
+    ret['chatbot_name']=CHAT_MAPPING[ans['chatbot_id']][1]
+    ret['reliability']=ans['accuracy']
+    print(ret,'!!!!!')
     return JsonResponse(ret, safe=False)

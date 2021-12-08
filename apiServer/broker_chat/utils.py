@@ -2,7 +2,7 @@ from socket import *
 import json
 
 BROKER_IP='3.37.67.26'
-BROKER_PORT=9001
+BROKER_PORT=9000
 
 
 def encoding_question(q_str):
