@@ -36,6 +36,7 @@ from .models import Answer
 
 
 # simple 버전
+CHAT_MAPPING={'22':'MOLI', '33':'ORORA', '44':'NEXT'}
 def Chatbot(request):
     print(request.body.decode('utf-8'),'!!! 질문 내용')
 
@@ -46,5 +47,8 @@ def Chatbot(request):
     #     'chatbot_id':chatbot_id,
     #     'reliability':reliability
     # }
-
-    return JsonResponse(get_answer(request.body.decode('utf-8')), safe=False)
+    ret = get_answer(request.body.decode('utf-8'))
+    print(ret)
+    ret['chatbot_id']=CHAT_MAPPING[ret['chatbot_id']]
+    print(ret)
+    return JsonResponse(ret, safe=False)
