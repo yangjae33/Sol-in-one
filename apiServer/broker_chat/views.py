@@ -38,15 +38,13 @@ from .models import Answer
 # simple 버전
 def Chatbot(request):
     print(request.body.decode('utf-8'),'!!! 질문 내용')
-    get_answer(request.body.decode('utf-8'))
-    answer, chatbot_id, reliability = '머니버스를 이용하세요', 2, 0.7  # get_answer(q)  -- ... 챗봇 서버로 부터 응답을 받음
 
-    ans={
-        'answer':answer,
-        'chatbot_id':chatbot_id,
-        'reliability':reliability
-    }
+    # answer, chatbot_id, reliability = '머니버스를 이용하세요', 2, 0.7  # get_answer(q)  -- ... 챗봇 서버로 부터 응답을 받음
+    #
+    # ans={
+    #     'answer':answer,
+    #     'chatbot_id':chatbot_id,
+    #     'reliability':reliability
+    # }
 
-
-    print(ans, '@@@@응답내용')
-    return JsonResponse(ans, safe=False)
+    return JsonResponse(get_answer(request.body.decode('utf-8')), safe=False)

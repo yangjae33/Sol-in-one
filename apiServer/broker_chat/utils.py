@@ -2,7 +2,7 @@ from socket import *
 import json
 
 BROKER_IP='3.37.67.26'
-BROKER_PORT=9000
+BROKER_PORT=9001
 
 
 def encoding_question(q_str):
@@ -30,7 +30,8 @@ def get_answer(requestMsg):
     clientSock.connect((BROKER_IP, BROKER_PORT))
     clientSock.sendall(data.encode('utf-8'))
     ret=str(clientSock.recv(1024), 'utf-8')
-    return ret
+
+    return json.loads(ret)
 
 
 
