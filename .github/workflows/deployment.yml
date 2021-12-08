@@ -39,13 +39,14 @@ jobs:
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition: task-definition.json
-          container-name: sol-in-one-container-service
-          image: ${{ steps.build-image.outputs.image }}
+          container-name: fmp-container
+          image: 118903531174.dkr.ecr.ap-northeast-2.amazonaws.com/amp:42e07a662d0491a07d2d3b7383884efb0a82329f
+#           image: ${{ steps.build-image.outputs.image }}
 
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: reactei
-          cluster: demo
+          service: hanja-service
+          cluster: hanju
           wait-for-service-stability: true
