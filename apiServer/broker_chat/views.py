@@ -40,15 +40,15 @@ CHAT_MAPPING={'22':'MOLI', '33':'ORORA', '44':'NEXT'}
 def Chatbot(request):
     print(request.body.decode('utf-8'),'!!! 질문 내용')
 
-    # answer, chatbot_id, reliability = '머니버스를 이용하세요', 2, 0.7  # get_answer(q)  -- ... 챗봇 서버로 부터 응답을 받음
-    #
-    # ans={
-    #     'answer':answer,
-    #     'chatbot_id':chatbot_id,
-    #     'reliability':reliability
-    # }
+
     ret = get_answer(request.body.decode('utf-8'))
-    print(ret)
+
+    ret={
+        'answer':'머니버스를 이용하세요',
+        'chatbot_id':'22',
+        'reliability':0.7
+    }
+
     ret['chatbot_id']=CHAT_MAPPING[ret['chatbot_id']]
     print(ret)
     return JsonResponse(ret, safe=False)
