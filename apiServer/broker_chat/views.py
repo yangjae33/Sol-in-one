@@ -36,7 +36,6 @@ from .models import Answer
 
 
 # simple 버전
-@method_decorator(csrf_exempt, name='dispatch')
 def Chatbot(request):
     print(request.body.decode('utf-8'),'!!! 질문 내용')
     get_answer(request.body.decode('utf-8'))
