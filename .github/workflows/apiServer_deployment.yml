@@ -38,8 +38,8 @@ jobs:
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-          task-definition: task-definition.json
-          container-name: fmp-container
+          task-definition: apiServer-task.json
+          container-name: backend
           image: 118903531174.dkr.ecr.ap-northeast-2.amazonaws.com/backend:latest
 #           image: ${{ steps.build-image.outputs.image }}
 
