@@ -1,17 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aiml>
   <category>
-    <pattern>안녕</pattern>
-    <template>안녕하세요 쏠메이트 오로라입니다!</template>
+    <pattern>금리가가장저렴한대출추천해주세요</pattern>
+    <template>대출 금리 확인하는 방법에 대해 안내해드릴게요, 자세한 내용은 [상세 보기]를 참조해주세요. >>상세보기
+</template>
   </category>
   <category>
-    <pattern>가장높은금리의상품이뭐야</pattern>
-    <template>신한 더모아 적금을 추천할게!</template>
+    <pattern>금리</pattern>
+    <template>대출 금리 확인하는 방법에 대해 안내해드릴게요, 자세한 내용은 [상세 보기]를 참조해주세요. >>상세보기
+</template>
   </category>
   <category>
-    <pattern>가장저렴한금리의상품이뭐야</pattern>
-    <template>신한 더모아 적금을 추천할게!</template>
+    <pattern>20대한테가장인기가많은카드추천해주세요</pattern>
+    <template>맞춤카드 추천을 통해 내게 맞는 카드를 확인해보세요! ('맞춤카드추천 바로가기')
+</template>
   </category>
+  <category>
+    <pattern>카드추천</pattern>
+    <template>맞춤카드 추천을 통해 내게 맞는 카드를 확인해보세요! ('맞춤카드추천 바로가기')
+</template>
+  </category>
+  <category>
+    <pattern>신용등급올리는법알려주세요</pattern>
+    <template>조회되는 신용정보는 신한은행 기준으로 제공되면, 외부 평가기관 신용점수와는 달라요. >>'MY신용관리'</template>
+  </category>
+  <category>
+    <pattern>신용등급올리는법</pattern>
+    <template>조회되는 신용정보는 신한은행 기준으로 제공되면, 외부 평가기관 신용점수와는 달라요. >>'MY신용관리'</template>
+  </category>
+  
+  <category>
+    <pattern>신용등급</pattern>
+    <template>조회되는 신용정보는 신한은행 기준으로 제공되면, 외부 평가기관 신용점수와는 달라요. >>'MY신용관리'</template>
+  </category>
+  <category>
+    <pattern>학자비저축목적의저금을위한적금추천해주세요.</pattern>
+    <template>예/적금관련 상품은 다음과 같습니다. 궁금하신 항목을 선택해주세요. ('신상품','금리높은 상품','최근많이 가입한 상품')
+</template>
+  </category>
+  <category>
+    <pattern>학자비저축목적의저금</pattern>
+    <template>예/적금관련 상품은 다음과 같습니다. 궁금하신 항목을 선택해주세요. ('신상품','금리높은 상품','최근많이 가입한 상품')
+</template>
+  </category>
+  <category>
+    <pattern>대출조건이어떻게되나요</pattern>
+    <template>어떤 대출 조건 확인을 도와드릴까요? </template>
+  </category>  
+    <category>
+    <pattern>대출조건</pattern>
+    <template>어떤 대출 조건 확인을 도와드릴까요? </template>
+  </category> 
   <category>
     <pattern>*</pattern>
     <template>그건 아직 잘 모르겠어요..</template>

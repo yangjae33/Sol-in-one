@@ -13,7 +13,7 @@ from time import sleep
 from time import time
 
 #broker PORT
-PORT = 9002
+PORT = 9001
 
 
 class Broker():

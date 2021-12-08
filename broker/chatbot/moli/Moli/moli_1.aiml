@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+  <category>
+    <pattern>DW테이블담당자가누구인가요</pattern>
+    <template>DW 테이블 관련 문의는 담당자에게 문의해주세요. (골드윙 메신저 '담당업무' 검색에서 'DW' 검색하면 나오는 담당자)</template>
+  </category>
+  <category>
+    <pattern>DW테이블담당자</pattern>
+    <template>DW 테이블 관련 문의는 담당자에게 문의해주세요. (골드윙 메신저 '담당업무' 검색에서 'DW' 검색하면 나오는 담당자)</template>
+  </category>
+  <category>
+    <pattern>DW</pattern>
+    <template>DW 테이블 관련 문의는 담당자에게 문의해주세요. (골드윙 메신저 '담당업무' 검색에서 'DW' 검색하면 나오는 담당자)</template>
+  </category>
+  <category>
+    <pattern>테이블데이터정합성이맞지않을때확인하는절차가어떻게되나요</pattern>
+    <template>DW 테이블 데이터 정합성이 맞지 않는 경우 확인 절차는 아래와 같습니다. 1. DW 테이블 담당자에게 확인 ('작업 정상 종료 확인',  '적재방식', '보관주기 확인') 2. 코어 원천 테이블 담당자에게 확인 ('컬럼값 문의')</template>
+  </category>
+  <category>
+    <pattern>테이블데이터정합성</pattern>
+    <template>DW 테이블 데이터 정합성이 맞지 않는 경우 확인 절차는 아래와 같습니다. 1. DW 테이블 담당자에게 확인 ('작업 정상 종료 확인',  '적재방식', '보관주기 확인') 2. 코어 원천 테이블 담당자에게 확인 ('컬럼값 문의')</template>
+  </category>
+  <category>
+    <pattern>SQL가이드문서가어느위치에있나요</pattern>
+    <template>NEXT프로젝트의 의미</template>
+  </category>
+  <category>
+    <pattern>테이블적재작업명규칙이어떻게되나요</pattern>
+    <template>'b+시스템코드(3)_table name_서버구분(1)+작업주기(1)+Source Type(1)+Target Type(1) + [일련번호(2)].sh'</template>
+  </category>
+  <category>
+    <pattern>테이블적재작업명규칙</pattern>
+    <template>'b+시스템코드(3)_table name_서버구분(1)+작업주기(1)+Source Type(1)+Target Type(1) + [일련번호(2)].sh'</template>
+  </category>
+  <category>
+    <pattern>테이블적재작업</pattern>
+    <template>'b+시스템코드(3)_table name_서버구분(1)+작업주기(1)+Source Type(1)+Target Type(1) + [일련번호(2)].sh'</template>
+  </category>
+  <category>
+    <pattern>테이블생성신청방법은어떻게되나요</pattern>
+    <template>'b+시스템코드(3)_table name_서버구분(1)+작업주기(1)+Source Type(1)+Target Type(1) + [일련번호(2)].sh'</template>
+  </category>
+  <category>
+    <pattern>테이블생성신청방법</pattern>
+    <template>'b+시스템코드(3)_table name_서버구분(1)+작업주기(1)+Source Type(1)+Target Type(1) + [일련번호(2)].sh'</template>
+  </category>
+ <category>
+    <pattern>테이블생성</pattern>
+    <template>'b+시스템코드(3)_table name_서버구분(1)+작업주기(1)+Source Type(1)+Target Type(1) + [일련번호(2)].sh'</template>
+  </category>
+  <category>
+    <pattern>*</pattern>
+    <template>점점 더 나은 모습을 보여드릴게요.</template>
+  </category>
+</aiml>
+ 

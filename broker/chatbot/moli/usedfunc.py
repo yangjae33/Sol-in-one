@@ -1,57 +1,32 @@
 # -*- encoding: utf-8 -*-
+
 import base64
 import os
 import threading
 import json
 import random
 import socket
-import pandas as pd
-import numpy as np
 import pickle
-#import nltk
 import threading
 import sys
-import gensim
 import Word2Vec
+import aiml
 
-#from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.naive_bayes import MultinomialNB
-from sklearn.linear_model import SGDClassifier
-from sklearn.pipeline import Pipeline
-from sklearn.metrics import accuracy_score
-from sklearn.pipeline import make_pipeline
-from konlpy.tag import Okt
+# -*- coding: utf-8 -*- 
 from time import time
 
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.feature_extraction.text import TfidfTransformer
-#from sklearn.naive_bayes import MultinomialNB # 다항분포 나이브 베이즈 모델
-#from sklearn.metrics import accuracy_score #정확도 계산
-#import pandas as pd
-#import numpy as np
 
-from sklearn import preprocessing
-
-twitter = Okt() #KONLPY tokenizer
 W2V = Word2Vec.Word2Vec()
-
-#functions for training
-def tokenizer_twitter_morphs(doc):
-    return twitter.morphs(doc)
-
-def tokenizer_twitter_noun(doc):
-    return twitter.nouns(doc)
-
-def tokenizer_twitter_pos(doc):
-    return twitter.pos(doc, norm=True, stem=True)
 
 def predict_category(s, train, model):
     pred = model.predict([s])
     return pred[0]
 
-#def training(chatbots, data):
-    
-    
+#train data from chatbots
+def training():
+    # aiml dont have to train
+    print("Running...")
+    return 'Training is finished'
 
 #register chatbot
 def registerChatbot(chatbots, data):
@@ -76,77 +51,35 @@ def deregisterChatbot(chatbots, data):
 
 #dispatch message
 def dispatchMessage(chatbots, data):
-    
-    data_df = pd.read_csv("./data2.csv", header=0)
 
-    answer,label = data_df['A'], data_df['label']
+    kern = aiml.Kernel()
 
-    dtmvector = CountVectorizer()
-    X_train_dtm = dtmvector.fit_transform(answer)
-    print(X_train_dtm.shape)
-    tfidf_transformer = TfidfTransformer()
-    tfidfv = tfidf_transformer.fit_transform(X_train_dtm)
-    #print(X_train_dtm.shape)
+    kern.verbose(False)
+    brainLoaded = False
+    forceReload = False
+    while not brainLoaded:
+        if forceReload or (len(sys.argv) >= 2 and sys.argv[1] == "reload"):
+            kern.bootstrap(learnFiles="std-startup.xml", commands="load aiml b")
+            brainLoaded = True
+            kern.saveBrain("standard.brn")
+        else:
+            try:
+                kern.bootstrap(brainFile = "standard.brn")
+                brainLoaded = True
+            except:
+                forceReload = True
 
-    mod = MultinomialNB()
-    mod.fit(tfidfv,label)
-    MultinomialNB(alpha=2.0, class_prior=None, fit_prior=True)
+    # Enter the main input/output loop.
+    # print("\nINTERACTIVE MODE (ctrl-c to exit)")
 
-    #newsdata_test = fetch_20newsgroups(subset='test', shuffle=True) #테스트 데이터 갖고오기
-    X_test_dtm = dtmvector.transform(answer) #테스트 데이터를 DTM으로 변환
-    tfidfv_test = tfidf_transformer.transform(X_test_dtm) #DTM을 TF-IDF 행렬로 변환
-
-    predicted = mod.predict(tfidfv_test) #테스트 데이터에 대한 예측
-    #print(tfidfv_test)
-    print("정확도:", accuracy_score(label, predicted)) #예측값과 실제값 비교
-
-    # training completed
-    #==========================================================
-    
-    pred = data['question']
-    X_pred_dtm = dtmvector.transform(pred)
-    tfidfv_pred = tfidf_transformer.transform(X_pred_dtm)
-    predicted = mod.predict(tfidfv_pred) 
-    #print(predicted)
-    pred_chatbot_id = int(round(sum(predicted)/pred.size))
-    print("예측값:","챗봇(",pred_chatbot_id,")")
-
-    #title of current video
-    #video_name = data["video_name"]
-
-    #open trained model file
-    #train_file = open('data_out/'+video_name+'_model.pkl', 'rb')
-    #model = pickle.load(train_file)
-
-    #open train data file
-    #file = open('data_out/'+video_name+'_df_Chatbot_chat.pkl', 'rb')
-    #train = pickle.load(file)
-
-    #open registered chatbot information file
-    chatbot_info_file = open('data_in/chatbot_info.json', 'r')
-    chatbot_info = json.load(chatbot_info_file)
-
-    #received message
-    request = data["question"]
-
-    #predict chatbot class
-    #predict = predict_category(request, train, model)
-
-    #predicted chatbot's adress
-    if pred_chatbot_id == 22 :
-        address = '127.0.0.1'
-        PORT = 9001
-    else : 
-        address = '127.0.0.1'
-        PORT = 9002
-    #address = chatbot_info[video_name][predict]["chatbot_ip"]
-    #PORT = chatbot_info[video_name][predict]["chatbot_port"]
-    #print("connects with: ", address, str(PORT))
-
-    #receiving answer from chatbot
-    received = sendRequest("", data, address, PORT)
-    return received
-
+    response = dict()
+    print(data['question'])
+    data['question']
+    response["message"] = kern.respond(data["contents"].replace(" ","")).strip()
+    response["chatbot_id"] = 2;
+    response["accuracy"] = 0.77
+    print(response)
+    return response
 
 #get information of registered chatbot
 def getChatbotInfo(chatbots, data):
@@ -249,6 +182,7 @@ def sendRequest(method, data, address, PORT):
         print("챗봇이 존재하지 않거나 꺼져있다")
         received = -1
     return received
+
 
 class ServerThread(threading.Thread):
     def __init__(self, server):
