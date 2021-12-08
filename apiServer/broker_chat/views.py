@@ -36,7 +36,7 @@ from .models import Answer
 
 
 # simple 버전
-CHAT_MAPPING={'22':['cBWAkfuKLnRsumcU6Z4j', 'MOLY'], '33':['FMBsMyWGx4LpTtX619Pi', 'ORORA'], '44':['DVkuJGchRdn8hxiuWbon','NEXT']}
+CHAT_MAPPING={'22':['cBWAkfuKLnRsumcU6Z4j', 'MOLI'], '33':['FMBsMyWGx4LpTtX619Pi', 'ORORA'], '44':['DVkuJGchRdn8hxiuWbon','NEXT']}
 def Chatbot(request):
     print(request.body.decode('utf-8'),'!!! 질문 내용')
 
