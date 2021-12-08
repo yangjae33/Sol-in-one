@@ -50,3 +50,7 @@ jobs:
           service: backend-service
           cluster: sol-in-one
           wait-for-service-stability: true
+
+      - name: Force deployment
+        run: |
+          aws ecs update-service --cluster ff_prod --service ff_prod --force-new-deployment
