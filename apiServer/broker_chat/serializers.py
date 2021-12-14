@@ -9,4 +9,4 @@ class QuestionSerializer(serializers.ModelSerializer):
 class AnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model=Answer
-        fields='__all__'
+        fields=['answer','chatbot_id','chatbot_name','accuracy']

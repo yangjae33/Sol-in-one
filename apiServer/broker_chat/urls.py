@@ -6,5 +6,6 @@ router = DefaultRouter()
 #router.register(r'posts', views.PostViewSet)
 
 urlpatterns=[
+    url(r'reaction/', views.reflectReaction),
     url(r'', views.Chatbot),
 ]

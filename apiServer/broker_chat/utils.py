@@ -6,10 +6,8 @@ BROKER_PORT=9000
 
 
 def encoding_question(q_str):
-    con=socket.create_connection((BROKER_IP,BROKER_PORT)) # 실제로는 model서버 ip/port값으로 넣기
-    con.send(q_str.encode())
-    ret=con.recv(1024)
-    return int(ret)
+    ret= '123456710'
+    return ret
 
 
 # def get_answer(data):
