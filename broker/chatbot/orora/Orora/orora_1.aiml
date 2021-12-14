@@ -53,7 +53,7 @@
   </category> 
   <category>
     <pattern>*</pattern>
-    <template>그건 아직 잘 모르겠어요..</template>
+    <template>그건 아직 잘 모르겠어요...</template>
   </category>
 </aiml>
  

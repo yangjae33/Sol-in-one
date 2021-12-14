@@ -102,8 +102,8 @@ def dispatchMessage(chatbots, data):
 
     # training completed
     #==========================================================
-    
-    pred = data['question']
+    df = pd.DataFrame(data=[list(data.values())],columns=list(data.keys()))
+    pred = df['question']    
     X_pred_dtm = dtmvector.transform(pred)
     tfidfv_pred = tfidf_transformer.transform(X_pred_dtm)
     predicted = mod.predict(tfidfv_pred) 
@@ -128,7 +128,7 @@ def dispatchMessage(chatbots, data):
 
     #received message
     request = data["question"]
-
+    
     #predict chatbot class
     #predict = predict_category(request, train, model)
 
@@ -144,7 +144,7 @@ def dispatchMessage(chatbots, data):
     #print("connects with: ", address, str(PORT))
 
     #receiving answer from chatbot
-    received = sendRequest("", data, address, PORT)
+    received = sendRequest("/message?/", data, address, PORT)
     return received
 
 
@@ -248,7 +248,8 @@ def sendRequest(method, data, address, PORT):
     except socket.error as e:
         print("챗봇이 존재하지 않거나 꺼져있다")
         received = -1
-    return received
+    answer = json.loads(received.replace('\r\n',''))
+    return answer
 
 class ServerThread(threading.Thread):
     def __init__(self, server):

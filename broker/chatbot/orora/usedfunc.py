@@ -75,9 +75,9 @@ def dispatchMessage(chatbots, data):
     response = dict()
     print(data['question'])
     data['question']
-    response["message"] = kern.respond(data["contents"].replace(" ","")).strip()
-    response["chatbot_id"] = 1;
-    response["accuracy"] = 0.77
+    response["answer"] = kern.respond(data["question"].replace(" ","")).strip()
+    response["chatbot_id"] = "33"
+    response["accuracy"] = "0.81"
     print(response)
     return response
 
